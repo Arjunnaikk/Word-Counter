@@ -5,16 +5,19 @@ export default function TextForm(props) {
     // console.log('UpperCase was clicked  '+text);
     let newText = text.toUpperCase()
     setText(newText)
+    props.showAlert("Text converted to UpperCase!! ","success")
   }
   const handleLowerClick = ()=>{
     // console.log('UpperCase was clicked  '+text);
     let newText = text.toLowerCase()
     setText(newText)
+    props.showAlert("Text converted to LowerCase!! ","success")
   }
   const handleClearClick = ()=>{
     // console.log('UpperCase was clicked  '+text);
     let newText = ''
     setText(newText)
+    props.showAlert("Text cleared!! ","success")
   }
 
   const handleCopy = () => {
@@ -22,12 +25,18 @@ export default function TextForm(props) {
     text.select()
     text.setSelectionRange(0,9999)
     navigator.clipboard.writeText(text.value)
-    // props.showAlert("Copied to clipboard!! ","Success")
+    props.showAlert("Copied to clipboard!! ","success")
   }
   
   const handleOnChange = (event)=>{
     // console.log('On Change');
     setText(event.target.value)
+  }
+
+  const handleExtraSpace = () => {
+    let newText = text.split(/[ ]+/)
+    setText(newText.join(" "))
+    props.showAlert("Extra Space removed!! ","success")
   }
   const [text, setText] = useState("")
   
@@ -42,6 +51,7 @@ export default function TextForm(props) {
   <button className='btn btn-dark mx-3 my-2' onClick={handleUpClick}>Convert to uppercase</button>
   <button className='btn btn-dark mx-3 my-2' onClick={handleLowerClick}>Convert to lowercase</button>
   <button className='btn btn-dark mx-3 my-2' onClick={handleCopy}>Copy Text</button>
+  <button className='btn btn-dark mx-3 my-2' onClick={handleExtraSpace}>Remove Extra space</button>
   <button className='btn btn-dark mx-3 my-2' onClick={handleClearClick}>Clear Text</button>
   </div>
   <div className="container my-4" style={{color: props.mode === 'light'?'black':'white'}}>
