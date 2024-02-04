@@ -1,9 +1,15 @@
 import Alert from './components/Alert';
 import Navbar from './components/Navbar';
-// import About from './components/About';
+import About from './components/About';
 import TextForm from './components/TextForm';
 // import logo from './logo.svg';
 import React, { useState } from 'react'
+import {
+  BrowserRouter,
+  Routes,
+  Route
+} from "react-router-dom";
+
 
 function App() {
   const [mode, setMode] = useState(`light`);
@@ -14,7 +20,7 @@ function App() {
     setAlert({
       msg: message,
       type: type
-    })
+    }) 
     setTimeout(() => {
       setAlert(null)
     }, 2000);
@@ -38,12 +44,18 @@ function App() {
   }
   return (
     <>
+    <BrowserRouter>
       <Navbar title="LetsReact" aboutText="About" mode={mode} cmode={cmode} cmt={cmt} toggleMode={toggleMode} />
       <Alert alert={alert} />
       <div className="container">
-        <TextForm heading="Enter the text" showAlert={showAlert} mode={mode} />
-        {/* <About/> */}
+      <Routes>
+            <Route exact path='/about' element={<About mode={mode}/>} />
+            <Route exact path='/' element={<TextForm heading="Enter the text to analyze" showAlert={showAlert} mode={mode} toggleMode={toggleMode} />}>
+            </Route>
+
+          </Routes>
       </div>
+      </BrowserRouter>
     </>
   );
 }
