@@ -1,0 +1,1 @@
+rfce => create a component to connect with App.js 
