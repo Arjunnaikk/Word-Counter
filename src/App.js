@@ -26,7 +26,22 @@ function App() {
     }, 2000);
   }
 
+  const removeBodyColor = ()=>{
+    document.body.classList.remove('bg-light')
+    document.body.classList.remove('bg-dark')
+    document.body.classList.remove('bg-success')
+    document.body.classList.remove('bg-primary')
+    document.body.classList.remove('bg-danger')
+    document.body.classList.remove('bg-warning')
+  }
+
+  const toggleChangeMode = (cls) => {
+    removeBodyColor()
+    document.body.classList.add('bg-'+cls)
+
+  }
   const toggleMode = () => {
+    removeBodyColor()
     if (mode === `light`) {
       setMode(`dark`);
       setCmode(`light`);
@@ -45,7 +60,7 @@ function App() {
   return (
     <>
     <BrowserRouter>
-      <Navbar title="LetsReact" aboutText="About" mode={mode} cmode={cmode} cmt={cmt} toggleMode={toggleMode} />
+      <Navbar title="LetsReact" aboutText="About" mode={mode} cmode={cmode} cmt={cmt} toggleMode={toggleMode} toggleChangeMode={toggleChangeMode} />
       <Alert alert={alert} />
       <div className="container">
       <Routes>

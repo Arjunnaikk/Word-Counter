@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 
 export default function Navbar(props) {
   return (
+    
     <nav className={`navbar navbar-expand-lg navbar-${props.mode} bg-${props.mode}`}>
     <div className="container-fluid">
       <Link className="navbar-brand" to="/">{props.title}</Link>
@@ -24,13 +25,23 @@ export default function Navbar(props) {
           <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
           <button className="btn btn-outline-info" type="submit">Search</button>
         </form> */}
+        <div className="d-flex">
+          <div className="bg-primary rounded mx-2" onClick={() => props.toggleChangeMode("primary")} style={{height:"30px",width:"30px",cursor:"pointer"}}></div>
+          <div className="bg-success rounded mx-2" onClick={() => props.toggleChangeMode("success")} style={{height:"30px",width:"30px",cursor:"pointer"}}></div>
+          <div className="bg-warning rounded mx-2" onClick={() => props.toggleChangeMode("warning")} style={{height:"30px",width:"30px",cursor:"pointer"}}></div>
+          <div className="bg-danger rounded mx-2" onClick={() => props.toggleChangeMode("danger")} style={{height:"30px",width:"30px",cursor:"pointer"}}>
+
+          </div>
+        </div>
         <div className={`form-check form-switch text-${props.cmode}`}>
-        <input className="form-check-input" onClick={props.toggleMode} type="checkbox" id="flexSwitchCheckDefault"/>
+        <input className="form-check-input" onClick={() => props.toggleMode(null)} type="checkbox" id="flexSwitchCheckDefault"/>
         <label className="form-check-label" htmlFor="flexSwitchCheckDefault">{props.cmt}</label>
         </div>
       </div>
     </div>
+    
   </nav>
+
   )
 }
 
